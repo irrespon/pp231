@@ -4,19 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import web.model.User;
+import web.service.UserService;
+import web.service.UserServiceImpl;
+
+import java.util.List;
 
 @Controller
 public class UserController {
 
-    private static User user;
-
-    static {
-        user = new User("alex","kor");
-    }
+    private UserService userService = new UserServiceImpl();
 
     @GetMapping("/")
     public String allUsers(Model model) {
-        model.addAttribute("user",user);
+        List<User> users = userService.allUsers();
+        model.addAttribute("users",users);
         return "users";
     }
 

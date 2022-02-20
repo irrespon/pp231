@@ -18,6 +18,8 @@ public class UserDAOImpl implements UserDAO{
         user1.setId(AUTO_ID.getAndIncrement());
         User user2 = new User("C","D");
         user2.setId(AUTO_ID.getAndIncrement());
+        users.put(user1.getId(),user1);
+        users.put(user2.getId(),user2);
     }
 
     @Override
