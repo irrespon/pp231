@@ -19,15 +19,14 @@
             <td th:text="${user.getName()}"></td>
             <td th:text="${user.getSurname()}"></td>
             <td>
-                <a href="/edit/${user.id}">edit</a>
-                <a href="/delete/${user.id}">delete</a>
+                <a th:href="@{/edit/{id}(id=${user.getId()})}">edit</a>
+                <a th:href="@{/delete/{id}(id=${user.getId()})}">delete</a>
             </td>
         </tr>
         </tbody>
     </table>
 
 <h2>Add</h2>
-
 <a href="${add}">Add new user</a>
 </body>
 </html>
