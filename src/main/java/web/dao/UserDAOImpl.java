@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.springframework.stereotype.Component;
 import web.model.User;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Component
 public class UserDAOImpl implements UserDAO{
 
     private static final AtomicLong AUTO_ID = new AtomicLong(0);
