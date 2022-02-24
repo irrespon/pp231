@@ -8,12 +8,14 @@
 edit page
 
 <p th:text="${user.getId()}" />
-
-<form action="#" th:action="@{/edit}" th:object="${user}">
-
+<form th:method="POST" th:action="@{/edit}" th:object="${user}">
+    <label for="name" >Введите имя</label>
+    <input type="text" th:field="*{name}" id="name">
+    <label for="surname" >Введите фамилию</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br/>
+    <input type="submit" value="Применить"/>
 </form>
-
-<input type="submit" value="правка" th:href="@{/edit}" th:object="${user}">
 
 </body>
 </html>

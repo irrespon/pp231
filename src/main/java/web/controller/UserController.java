@@ -45,12 +45,18 @@ public class UserController {
         userService.add(user);
         return "redirect:/";
     }
-//
-//    @PostMapping("/edit")
-//    public String editUser(@ModelAttribute("user") User user) {
-//        System.out.println("!!!!!!!!");
-//        userService.edit(user);
-//        return "users";
-//    }
+
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.edit(user);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        User user = userService.getById(id);
+        userService.delete(user);
+        return "redirect:/";
+    }
 
 }
