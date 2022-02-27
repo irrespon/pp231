@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;// = new UserServiceImpl();
+    private UserService userService;
 
     @GetMapping("/")
     public String allUsers(Model model) {
@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user) {
-        userService.edit(user);
+        userService.add(user);
         return "redirect:/";
     }
 

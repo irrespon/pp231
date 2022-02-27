@@ -1,52 +1,50 @@
 package web.dao;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import web.model.User;
 
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Component
+@Repository
 public class UserDAOImpl implements UserDAO{
 
-    private static final AtomicLong AUTO_ID = new AtomicLong(0);
+    @Autowired
+    private SessionFactory sessionFactory;
+
     private static Map<Long,User> users = new HashMap<>();
 
-    static {
-        User user1 = new User("A","B");
-        user1.setId(AUTO_ID.getAndIncrement());
-        User user2 = new User("C","D");
-        user2.setId(AUTO_ID.getAndIncrement());
-        users.put(user1.getId(),user1);
-        users.put(user2.getId(),user2);
-    }
-
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> allUsers() {
-        return new ArrayList<>(users.values());
+        TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
+        return query.getResultList();
     }
 
     @Override
     public void add(User user) {
-        user.setId(AUTO_ID.getAndIncrement());
-        users.put(user.getId(),user);
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
 
     @Override
     public void delete(User user) {
-        users.remove(user.getId());
+        sessionFactory.getCurrentSession().delete(user);
     }
 
     @Override
     public void edit(User user) {
-        users.put(user.getId(),user);
+        sessionFactory.getCurrentSession().update(user);
     }
 
     @Override
     public User getById(long id) {
-        return users.get(id);
+        return sessionFactory.getCurrentSession().get(User.class, id);
     }
 }
