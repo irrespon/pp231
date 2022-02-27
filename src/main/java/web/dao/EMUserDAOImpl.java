@@ -39,7 +39,6 @@ public class EMUserDAOImpl implements UserDAO{
     public void edit(User user) {
         System.out.println(user.getId());
         entityManager.merge(user);
-      //  sessionFactory.getCurrentSession().update(user);
     }
 
     @Override

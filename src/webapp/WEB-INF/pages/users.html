@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>users</title>
+    <title>Пользователи</title>
 </head>
 <body>
-<h2>Users</h2>
+<h2>Пользователи</h2>
     <table>
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>surname</th>
-            <th>action</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Исправить</th>
         </tr>
         <tbody>
         <tr th:each = "user: ${users}">
-            <td th:text="${user.getId()}"></td>
             <td th:text="${user.getName()}"></td>
             <td th:text="${user.getSurname()}"></td>
             <td>
-                <a th:href="@{/edit/{id}(id=${user.getId()})}">edit</a>
-                <a th:href="@{/delete/{id}(id=${user.getId()})}">delete</a>
+                <a th:href="@{/edit/{id}(id=${user.getId()})}">Редактировать</a>
+                <a th:href="@{/delete/{id}(id=${user.getId()})}">Удалить</a>
             </td>
         </tr>
         </tbody>
     </table>
 
-<h2>Add</h2>
-<a th:href="@{/newUser}">Add new user</a>
+<h2>Добавить</h2>
+<a th:href="@{/newUser}">Добавить нового пользователя</a>
 </body>
 </html>
