@@ -32,12 +32,13 @@ public class EMUserDAOImpl implements UserDAO{
 
     @Override
     public void delete(User user) {
-        entityManager.remove(user);
+        entityManager.createQuery("delete from User where id = :id")
+                .setParameter("id",user.getId())
+                .executeUpdate();
     }
 
     @Override
     public void edit(User user) {
-        System.out.println(user.getId());
         entityManager.merge(user);
     }
 
